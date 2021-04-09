@@ -1,0 +1,76 @@
+<%- include('layouts/header') %>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <h1>Short news</h1>
+                <div class="card-deck">
+                    <div class="card mb-3">
+                        <img class="card-img-top" src="/pictures/9vcb8lqxene01.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">nice dunk bruh</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos,
+                                aspernatur? Non, accusantium error! Atque distinctio voluptatem cum voluptatibus. Illo
+                                ut ipsum corrupti deleniti, inventore praesentium esse quos rem. Odit, asperiores!</p>
+                            <p class="card-text"><small class="text-muted">Uploaded today</small></p>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <img class="card-img-top" src="/pictures/neonbrand-UegcSdRtmlg-unsplash.jpg"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">no covid so cool</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit
+                                ipsa aspernatur optio. Sequi magnam aliquam, perferendis corrupti, tempora ipsam odio
+                                magni corporis sint dignissimos, error cumque pariatur dicta id labore?</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">lebron retires?:?????</h5>
+                            <p class="card-text">NO XD CLICKBATED HAHAHHAHAHAHAHAHHAHAHAHA</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 ml-5">
+                <h1>Random stuff</h1>
+                <div class="card mb-3">
+                    <img class="card-img-top" src="/pictures/nick-jio-57rD2oDZquc-unsplash.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Join or create a league...</h5>
+                        <p class="card-text">...cause its cool. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Exercitationem
+                            nostrum accusamus facilis eum iure praesentium. Earum, molestiae commodi? Rem sunt maxime
+                            aut. Perferendis dicta aliquid, sapiente delectus iste quia odit!</p>
+                        <a href="/league/join" class="btn btn-primary">Join league</a>
+                        <a href="/league/new" class=" btn btn-success">Create league</a>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <img class="card-img-top" src="/pictures/inj.jfif" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Latest injuryes</h5>
+                        <p class="card-text">Kawhi Leonard - out 1 week</p>
+                        <p class="card-text">Joel Embiid - out 2 months</p>
+                        <p class="card-text">Steph Curry - out 2 weeks</p>
+                        <a href="/league" class=" btn btn-primary">Change your starters</a>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <img class="card-img-top" src="/pictures/NBA-logo-illustration.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Your leagues</h5>
+                        <% if(loggedInUser) {%>
+                            <% for(let league of leagues) { %>
+                                <p><a href="/league/<%=league._id%>">
+                                        <%- league.leagueName %>
+                                    </a></p>
+                                <% }} %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('layouts/footer') %>

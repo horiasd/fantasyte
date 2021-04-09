@@ -1,0 +1,50 @@
+<%- include('../layouts/header') %>
+    <div class="container d-flex justify-content-center align-items-center mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+                <div class="card">
+                    <img src="/pictures/profile.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Your profile</h5>
+                        <p class="card-text">Username: <%= user.username %>
+                        </p>
+                        <p class="card-text">Email: <%= user.email %>
+                        </p>
+                        <% if(leagues.length > 0) { %> 
+                        <b class="card-text mb-1">Your invite only leagues:</b>
+                        <% for(let league of leagues) { %>
+                            <form action="/profile?_method=PUT" method="POST" class="needs-validation mb-2" novalidate>
+                                <p class="card-text">
+                                    Name of the league: <%= league.leagueName %>
+                                </p>
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">Username</label>
+                                    <input class="form-control" type="username" id="username" name="username" required>
+                                    <input type="hidden" id="leagueid" name="leagueid" value="<%-league._id%>">
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please provide a username.
+                                    </div>
+                                </div>
+                                <button class="btn btn-success btn-block">Invite player</button>
+                            </form>
+                            <% }} %>
+                            <% if(invitedToLeagues.length > 0) { %> 
+                            <b class="card-text mb-1">You've be invited to these leagues:</b>
+                            <% for(let league of invitedToLeagues) { %>
+                                <form action="/profile" method="POST">
+                                    <p class="card-text">
+                                        Name of the league: <%= league.leagueName %>
+                                    </p>
+                                    <input type="hidden" id="leagueid" name="leagueid" value="<%-league._id%>">
+                                    <button class="btn btn-success btn-block">Accept invite</button>
+                                </form>
+                                <% }} %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../layouts/footer') %>

@@ -1,0 +1,68 @@
+<%- include('../layouts/header') %>
+    <div class="container d-flex justify-content-center align-items-center mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+                <div class="card shadow">
+                    <img src="/pictures/landingpage.jpg" alt="" class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="card-title">Create league</h5>
+                        <form action="/league" method="POST" class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label class="form-label" for="leagueName">Name of the league</label>
+                                <input class="form-control" type="text" id="leagueName" name="league[leagueName]"
+                                    autofocus required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a name for the league.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="leagueDraftTime">Time of the draft</label>
+                                <input class="form-control" type="datetime-local" id="leagueDraftTime"
+                                    name="league[draftTime]" autofocus required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a draft time for the league.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <p>League type:</p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="league[leagueType]"
+                                        id="leagueTypeFree" value="free" checked>
+                                    <label class="form-check-label" for="leagueTypeFree">
+                                        Free
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="league[leagueType]"
+                                        id="leagueTypeInvite" value="invite">
+                                    <label class="form-check-label" for="leagueTypeInvite">
+                                        Invite only
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="leaguePlayerCount">Player count(min: 6 max: 16)</label>
+                                <input class="form-control" type="number" min="6" max="16" id="leaguePlayerCount"
+                                    name="league[maxPlayerCount]" autofocus required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please provide a valid player count.
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block">Create league</button>
+                            <a class="btn btn-danger btn-block" href="/start">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../layouts/footer') %>

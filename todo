@@ -1,0 +1,56 @@
+-------------------------------TODO------------------------------
+-csatlakozási sorrendben legyen a draft
+|--->pl ha apr 10 16:00-kor van a draft, akkor az elso ember mondjuk 16:02-ig
+|--->draftolhasson, a masodik 16:04, stb... Ezek az időpontok legyenek is benne a db-ben
+
+Tudjuk: draft ideje, játékosok sorrendje, ki hányadik pontosan a sorrendben
+
+//TODO
+-draftHappened érték átállítása, ha vége a draftnak
+-valahogy a körök követése, ha nem megy akkor mindenki egyben ledraftolja az egész csapatát
+-vhogy ellenőrizni kell, hogy a user ne maradhasson örökre a draftolos oldalon, ha a 
+rendszer beengedte vmikor
+
+a draft pedig így zajlana:
+|--->Lenne egy "Refresh" gomb, mert újra kell tölteni az oldalt, hogy meg lehessen nézni,
+|--->hogy ki jön(vagy megnézni vmi autorefresh dolgot). Olyankor nem tudom mondjuk mi van,
+|--->ha valaki 2 percig semmittesz és nem választ ki semmmit...
+
+|--->Az az ember férhet mindig hozzá a draftolós oldalhoz, akinek a az adott ligához
+|--->tartozó "yourDraftTime"-ja beleesik egy adott mondjuk 2 perces keretbe. 
+|--->Körökre lesz osztva a draft, mindenki 1 körben 1 játékost választhat. A yourDraftTime, 
+|--->mindig az első körben draftolási időt jelöli. Ehhez minden körben n * (i -1) * 2 -őt
+|--->ahol "n" a ligához csatlakozott játékosok számát "i" pedig azt jelöli, hogy éppen hányadik
+|--->körben járunk. Draft végén mindenkinek egy teljes csapattal kell rendelkezni.
+
+Csapatok tárolása "User" táblában: 
+teams: {
+    leagueId: 1234271323761283662381627
+    team: [
+        LeBron,
+        Giannis,
+        Curry,
+        Embiid,
+        Jokic,
+        stb.....
+    ]
+}
+
+EL KELL TÁROLNI A JÁTÉKOSOKAT(mondjuk kb 50-et), nekik "naponta"(amikor megnyomok egy gombot),
+le kell kérni a teljesítményüket. Ez alapján, pedig mehet a pontszámítás. 
+THATS THE HARD PART
+
+A "User" táblában el kell tárolni, azt is, hogy ki kivel játszik az adott héten, valamint
+azt is, hogy ki hogyan áll. Kell egy WINS és egy LOSSES számláló.
+
+Kell egy admin page, ahol lesz egy gomb ami lehúzza az új adatokat, az apiból, és egy másik
+gomb, ami lezárja az e heti meccseket, és megnézi ki nyert ilyesmi, és a következő heti
+meccsek lesznek az aktuálisak. 
+|--> Kéne egy weekCounter a db-be, amit ez a gomb állít nagyobb értékre. Ilyenkor mondjuk a
+matches tömbből már a második matchupot jelenítené meg az első helyett.
+
+-RAPIDAPI NBA-API TRY IT BICS
+-meccsek tárolásának megoldása(ki kivel játszik, mennyi az eredmény, ki hogy áll)
+-HOW TO PLAY oldal
+
+MIDDLEWAREK "SZÉTTÖRÉSE" <- NE LEGYENEK OLYAN HOSSZÚAK

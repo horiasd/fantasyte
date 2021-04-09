@@ -1,0 +1,39 @@
+<%- include('../layouts/header') %>
+
+    <div class="container d-flex justify-content-center align-items-center mt-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Draft date</th>
+                    <th scope="col">Player count</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let league of leagues) { %>
+                    <% if(league.leagueType==="free" && league.users.length < league.maxPlayerCount) { %>
+                        <tr>
+                            <td>
+                                <%- league.leagueName %>
+                            </td>
+                            <td>
+                                <%- league.draftTime %>
+                            </td>
+                            <td>
+                                <%= league.users.length %> / <%- league.maxPlayerCount %>
+                            </td>
+                            <td>
+                                <form action="/league/join" method="POST">
+                                    <input type="hidden" name="id" value="<%-league._id%>">
+                                    <button class="btn btn-success btn-block">Join</button>
+                                </form>
+
+                            </td>
+
+                        </tr>
+                        <% }} %>
+            </tbody>
+        </table>
+    </div>
+    <%- include('../layouts/footer') %>
