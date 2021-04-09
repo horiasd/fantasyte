@@ -1,0 +1,204 @@
+{
+    "players": [
+        {
+            "name": "LeBron James",
+            "team": "Los Angeles Lakers"
+        },
+        {
+            "name": "Giannis Antetokounmpo",
+            "team": "Milwaukee Bucks"
+        },
+        {
+            "name": "Kawhi Leonard",
+            "team": "Los Angeles Clippers"
+        },
+        {
+            "name": "James Harden",
+            "team": "Brooklyn Nets"
+        },
+        {
+            "name": "Stephen Curry",
+            "team": "Golden State Warriors"
+        },
+        {
+            "name": "Kevin Durant",
+            "team": "Brooklyn Nets"
+        },
+        {
+            "name": "Anthony Davis",
+            "team": "Los Angeles Lakers"
+        },
+        {
+            "name": "Nikola Jokic",
+            "team": "Denver Nuggets"
+        },
+        {
+            "name": "Luka Doncic",
+            "team": "Dallas Mavericks"
+        },
+        {
+            "name": "Joel Embiid",
+            "team": "Philadelphia 76ers"
+        },
+        {
+            "name": "Jimmy Butler",
+            "team": "Miami Heat"
+        },
+        {
+            "name": "Damian Lillard",
+            "team": "Portland Trail Blazers"
+        },
+        {
+            "name": "Paul George",
+            "team": "Los Angeles Clippers"
+        },
+        {
+            "name": "Chris Paul",
+            "team": "Phoenix Suns"
+        },
+        {
+            "name": "Bradley Beal",
+            "team": "Washington Wizards"
+        },
+        {
+            "name": "Rudy Gobert",
+            "team": "Utah Jazz"
+        },
+        {
+            "name": "Jayson Tatum",
+            "team": "Boston Celtics"
+        },
+        {
+            "name": "Karl-Anthony Towns",
+            "team": "Minnesota Timberwolves"
+        },
+        {
+            "name": "Kyrie Irving",
+            "team": "Brooklyn Nets"
+        },
+        {
+            "name": "Bam Adebayo",
+            "team": "Miami Heat"
+        },
+        {
+            "name": "Ben Simmons",
+            "team": "Philadelphia 76ers"
+        },
+        {
+            "name": "Jamal Murray",
+            "team": "Denver Nuggets"
+        },
+        {
+            "name": "Donovan Mitchell",
+            "team": "Utah Jazz"
+        },
+        {
+            "name": "Devin Booker",
+            "team": "Phoenix Suns"
+        },
+        {
+            "name": "Russell Westbrook",
+            "team": "Washington Wizards"
+        },
+        {
+            "name": "Jrue Holiday",
+            "team": "Milwaukee Bucks"
+        },
+        {
+            "name": "Khris Middleton",
+            "team": "Milwaukee Bucks"
+        },
+        {
+            "name": "Kyle Lowry",
+            "team": "Toronto Raptors"
+        },
+        {
+            "name": "Trae Young",
+            "team": "Atlanta Hawks"
+        },
+        {
+            "name": "Pascal Siakam",
+            "team": "Toronto Raptors"
+        },
+        {
+            "name": "Kemba Walker",
+            "team": "Boston Celtics"
+        },
+        {
+            "name": "Zion Williamson",
+            "team": "New Orleans Pelicans"
+        },
+        {
+            "name": "LaMarcus Aldridge",
+            "team": "Brooklyn Nets"
+        },
+        {
+            "name": "Draymond Green",
+            "team": "Golden State Warriors"
+        },
+        {
+            "name": "CJ McCollum",
+            "team": "Portland Trail Blazers"
+        },
+        {
+            "name": "Brandon Ingram",
+            "team": "New Orleans Pelicans"
+        },
+        {
+            "name": "De’Aaron Fox",
+            "team": "Sacramento Kings"
+        },
+        {
+            "name": "Jaylen Brown",
+            "team": "Boston Celtics"
+        },
+        {
+            "name": "DeMar DeRozan",
+            "team": "San Antonio Spurs"
+        },
+        {
+            "name": "Kristaps Porzingis",
+            "team": "Dallas Mavericks"
+        },
+        {
+            "name": "Ja Morant",
+            "team": "Memphis Grizzlies"
+        },
+        {
+            "name": "Victor Oladipo",
+            "team": "Indiana Pacers"
+        },
+        {
+            "name": "Nikola Vucevic",
+            "team": "Orlando Magic"
+        },
+        {
+            "name": "Jusuf Nurkic",
+            "team": "Portland Trail Blazers"
+        },
+        {
+            "name": "Blake Griffin",
+            "team": "Brooklyn Nets"
+        },
+        {
+            "name": "D’Angelo Russell",
+            "team": "Minnesota Timberwolves"
+        },
+        {
+            "name": "Kevin Love",
+            "team": "Cleveland Cavaliers"
+        },
+        {
+            "name": "Steven Adams",
+            "team": "New Orleans Pelicans"
+        },
+        {
+            "name": "Danilo Gallinari",
+            "team": "Atlanta Hawks"
+        },
+        {
+            "name": "Mike Conley",
+            "team": "Utah Jazz"
+        }
+    ]
+}

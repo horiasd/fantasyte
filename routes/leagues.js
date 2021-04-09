@@ -146,8 +146,8 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
 }))
 
 //Adds player to users team.
-router.post('/:id/draft', isLoggedIn, async((req, res) => {
-
+router.post('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
+    
 }))
 
 //Displays your team in specific league.
