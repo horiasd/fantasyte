@@ -1,9 +1,6 @@
 -------------------------------TODO------------------------------
--csatlakozási sorrendben legyen a draft
-|--->pl ha apr 10 16:00-kor van a draft, akkor az elso ember mondjuk 16:02-ig
-|--->draftolhasson, a masodik 16:04, stb... Ezek az időpontok legyenek is benne a db-ben
 
-Tudjuk: draft ideje, játékosok sorrendje, ki hányadik pontosan a sorrendben
+VALAMIÉRT 3. HÓ 5-ét jelez mindig az openedleague oldalon
 
 //TODO
 -draftHappened érték átállítása, ha vége a draftnak
