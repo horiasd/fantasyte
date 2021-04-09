@@ -51,6 +51,7 @@ router.get('/:id', isLoggedIn, catchAsyncErr(async (req, res) => {
         req.flash('error', 'Cant find that league.');
         return res.redirect(`/league`);
     }
+
     if(league.draftHappened === false) {
         const indexOfUser = league.users.indexOf(userId);
         const timeFromDB = league.draftTime;
@@ -59,6 +60,8 @@ router.get('/:id', isLoggedIn, catchAsyncErr(async (req, res) => {
         const draftWindowBeginning = new Date(timeFromDB.getTime() + diffToBeginning*60000);
         const draftWindowEnding = new Date(timeFromDB.getTime() + diffToEnding*60000);
         
+
+        //ezt ki kéne szervezni egy függvénybe
         const niceDraftTimeFormat = league.draftTime.getFullYear() + '.' 
                                     +(league.draftTime.getMonth() +1).toString()  + '.' 
                                     +league.draftTime.getDate()     + '. '
@@ -76,7 +79,6 @@ router.get('/:id', isLoggedIn, catchAsyncErr(async (req, res) => {
                             +draftWindowEnding.getDate()     + '. '
                             +draftWindowEnding.getHours()   + ':'
                             +draftWindowEnding.getMinutes();
-        //res.render('league/openedleague', { league, niceFormatB, niceFormatE });
         res.render('league/openedleague', { league, niceDraftTimeFormat, niceFormatB, niceFormatE });
     }
     else{
@@ -84,7 +86,7 @@ router.get('/:id', isLoggedIn, catchAsyncErr(async (req, res) => {
     }
 }))
 
-//Renders draft.
+//Renders draft, if its the loggedin users time to draft.
 router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
     const id = req.params.id;
     const userId = res.locals.loggedInUser._id;
@@ -99,17 +101,16 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
 
     const indexOfUser = league.users.indexOf(userId);
     let roundCounter = league.roundCount;
-    //ennyi kör amennyivel egyenlő
-    //vége a draftnak && redirectel is mindenkit
-    //TODO: ezt tesztelni itten
-    /*if(roundCounter === 5) {
-        league.draftHappened = true;
-        await league.save();
-        res.redirect(`/league/${id}`);
-    }*/
-
-    //console.log('index of user: ', indexOfUser);
-    //console.log('length of array: ', league.users.length);
+    //TODO: ezt tesztelni itten, asszem az 5 jó itt de ez nem 100% -> így mindenkinek 5 játékosa lesz,
+    //lehet több kéne, játékosok számától függ amit az apiból szedek
+    if(roundCounter === 5) {
+        await League.updateOne(
+            { _id: id }, 
+            { $set: { draftHappened: true } }
+        );
+        return res.redirect(`/league/${id}`);
+    }
+    
     console.log('roundCount: ', roundCounter);
     if(!league) {
         req.flash('error', 'Cant find that league.');
@@ -121,9 +122,6 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
     const diffToEnding = (indexOfUser * 2) + 2;
     const draftWindowBeginning = new Date(timeFromDB.getTime() + diffToBeginning*60000);
     const draftWindowEnding = new Date(timeFromDB.getTime() + diffToEnding*60000);
-    
-    //console.log('window beginnning time', draftWindowBeginning);
-    //console.log('window ending time', draftWindowEnding);
     
     const currentDateTime = new Date();
     
@@ -147,6 +145,11 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
     }
 }))
 
+//Adds player to users team.
+router.post('/:id/draft', isLoggedIn, async((req, res) => {
+
+}))
+
 //Displays your team in specific league.
 router.get('/:id/team', isLoggedIn, (req, res) => {
     res.render('league/team');
@@ -166,6 +169,7 @@ router.post('/', isLoggedIn, validateLeague, catchAsyncErr(async (req, res, next
     league.creator = res.locals.loggedInUser._id;
     league.users.push(user._id);
     await league.save();
+    //FIXME:ez nem kell ide??????????????????????????
     //user.invitedTo.push(league._id);
     //await user.save();
     req.flash('success', 'Successfully created a new league!');

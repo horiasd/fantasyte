@@ -19,7 +19,7 @@ router.get('/profile', isLoggedIn, catchAsyncErr(async (req, res) => {
     res.render('user/profile', { user, leagues, invitedToLeagues });
 }))
 
-//Invites player to an invite only leagu
+//Invites player to an invite only league.
 router.put('/profile', isLoggedIn, catchAsyncErr(async (req, res) => {
     const username = req.body.username;
     const leagueid = req.body.leagueid;

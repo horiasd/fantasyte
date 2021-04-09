@@ -1,9 +1,7 @@
 -------------------------------TODO------------------------------
-
-VALAMIÉRT 3. HÓ 5-ét jelez mindig az openedleague oldalon
-
 //TODO
--draftHappened érték átállítása, ha vége a draftnak
+-draftHappened érték átállítása, ha vége a draftnak <- elvileg megvan, de tesztelni kéne 
+----> nem jó mert az utolsó 
 -valahogy a körök követése, ha nem megy akkor mindenki egyben ledraftolja az egész csapatát
 -vhogy ellenőrizni kell, hogy a user ne maradhasson örökre a draftolos oldalon, ha a 
 rendszer beengedte vmikor
