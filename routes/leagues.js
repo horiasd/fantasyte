@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const League = require('../models/league');
 const User = require('../models/user');
+const Team = require('../models/team');
 const { isLoggedIn, validateLeague } = require('../middleware');
 const catchAsyncErr = require('../utils/catchAsyncError');
 const nba = require('../players.json');
@@ -17,9 +18,11 @@ router.get('/join', isLoggedIn, catchAsyncErr(async (req, res) => {
 //User joins league.
 router.post('/join', isLoggedIn, catchAsyncErr(async (req, res) => {
     const { id } = req.body;
+    const userId = res.locals.loggedInUser._id;
+    
     const league = await League.findById(id);
-    const user = res.locals.loggedInUser;
-    if (league.users.includes(user._id)) {
+    
+    if (league.users.includes(userId)) {
         req.flash('error', 'You already joined this league!');
         return res.redirect('/league/join');
     }
@@ -27,8 +30,10 @@ router.post('/join', isLoggedIn, catchAsyncErr(async (req, res) => {
         req.flash('error', 'Cannot join this league!');
         return res.redirect('/league/join');
     }
-    league.users.push(res.locals.loggedInUser._id);
+    league.users.push(userId);
     await league.save();
+    const team = new Team({_belongsToUser: userId, _belongsToLeague: id});
+    await team.save();
     req.flash('success', 'Successfully joined the league!');
     res.redirect(`/league/${id}`);
 }))
@@ -112,7 +117,6 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
         return res.redirect(`/league/${id}`);
     }
     
-    console.log('roundCount: ', roundCounter);
     if(!league) {
         req.flash('error', 'Cant find that league.');
         return res.redirect(`/league`);
@@ -150,9 +154,15 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
 router.post('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
     const playerName = req.body.playerName;
     const leagueId = req.params.id;
-    
-    
-    
+    const userId = res.locals.loggedInUser._id;
+
+    //const team = Team.findOne({_belongsToUser: userId, _belongsToLeague: leagueId});
+    //team.playerNames.push(playerName);
+    //await team.save();
+    await Team.updateOne(
+        { _belongsToUser: userId, _belongsToLeague: leagueId}, 
+        { $push: { playerNames: playerName } }
+    );
     return res.redirect(`/league/${leagueId}`);
 }))
 
@@ -171,10 +181,13 @@ router.get('/', isLoggedIn, catchAsyncErr(async (req, res) => {
 //Create league post route.
 router.post('/', isLoggedIn, validateLeague, catchAsyncErr(async (req, res, next) => {
     const league = new League(req.body.league);
-    const user = res.locals.loggedInUser;
-    league.creator = res.locals.loggedInUser._id;
-    league.users.push(user._id);
+    const userId = res.locals.loggedInUser._id;
+    league.creator = userId;
+    league.users.push(userId);
     await league.save();
+    const id = league._id;
+    const team = new Team({_belongsToUser: userId, _belongsToLeague: id});
+    await team.save();
     //FIXME:ez nem kell ide??????????????????????????
     //user.invitedTo.push(league._id);
     //await user.save();

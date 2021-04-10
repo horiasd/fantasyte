@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const TeamSchema = new Schema({
-    playerNames: [string],
-    //MAYBE GOOD NOT SURE
+    playerNames: [String],
     _belongsToUser: {
         type: Schema.Types.ObjectId,
         ref: 'User'
