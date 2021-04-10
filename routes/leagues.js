@@ -142,13 +142,18 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
     }
     else{
         req.flash('error', 'Someone else is drafting now!');
-        return res.redirect(`/league/${id}`)
+        return res.redirect(`/league/${id}`);
     }
 }))
 
 //Adds player to users team.
 router.post('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
+    const playerName = req.body.playerName;
+    const leagueId = req.params.id;
     
+    
+    
+    return res.redirect(`/league/${leagueId}`);
 }))
 
 //Displays your team in specific league.

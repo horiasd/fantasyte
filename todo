@@ -1,10 +1,13 @@
 -------------------------------TODO------------------------------
 //TODO
+-ELLENŐRIZNI KELL, HOGY AZ ADOTT USER DRAFTOLT E MÁR A KÖRBEN, MERT MOST HA GYORS AKKOR 
+AZ EGÉSZ CSAPATÁT LE TUDJA DRAFTOLNI A KÉT PERC ALATT
 -draftHappened érték átállítása, ha vége a draftnak <- elvileg megvan, de tesztelni kéne 
-----> nem jó mert az utolsó 
--valahogy a körök követése, ha nem megy akkor mindenki egyben ledraftolja az egész csapatát
 -vhogy ellenőrizni kell, hogy a user ne maradhasson örökre a draftolos oldalon, ha a 
 rendszer beengedte vmikor
+-ROUNDOT BELE KELL RAKNI A DRAFT IDŐ SZÁMÍTÁSÁBA
+-ha a user csatlakozik egy ligához, akkor hozzá kell adni a teams objecthez a leagueid-t,
+a csapatot meg a draftal feltölti ő
 
 a draft pedig így zajlana:
 |--->Lenne egy "Refresh" gomb, mert újra kell tölteni az oldalt, hogy meg lehessen nézni,
@@ -33,7 +36,6 @@ teams: {
 
 EL KELL TÁROLNI A JÁTÉKOSOKAT(mondjuk kb 50-et), nekik "naponta"(amikor megnyomok egy gombot),
 le kell kérni a teljesítményüket. Ez alapján, pedig mehet a pontszámítás. 
-THATS THE HARD PART
 
 A "User" táblában el kell tárolni, azt is, hogy ki kivel játszik az adott héten, valamint
 azt is, hogy ki hogyan áll. Kell egy WINS és egy LOSSES számláló.
@@ -44,8 +46,8 @@ meccsek lesznek az aktuálisak.
 |--> Kéne egy weekCounter a db-be, amit ez a gomb állít nagyobb értékre. Ilyenkor mondjuk a
 matches tömbből már a második matchupot jelenítené meg az első helyett.
 
+-a draft végén ki kéne sorsolni, hogy ki kivel játszik -> ezt db-be belerakni
+
 -RAPIDAPI NBA-API TRY IT BICS
 -meccsek tárolásának megoldása(ki kivel játszik, mennyi az eredmény, ki hogy áll)
 -HOW TO PLAY oldal
-
-MIDDLEWAREK "SZÉTTÖRÉSE" <- NE LEGYENEK OLYAN HOSSZÚAK

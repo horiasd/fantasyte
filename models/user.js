@@ -16,7 +16,14 @@ const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'League'
     }],
-    leaguesDraftTime: [{
+    teams:[{
+        leagueid: {
+            type: Schema.Types.ObjectId,
+            ref: 'League'
+        },
+        team: [String]
+    }]
+    /*leaguesDraftTime: [{
         leagueid: {
             type: Schema.Types.ObjectId,
             ref: 'League'
@@ -24,7 +31,7 @@ const UserSchema = new Schema({
         yourDraftTime: {
             type: Date
         }   
-    }]
+    }]*/
 });
 //adds password, and username field
 UserSchema.plugin(passportLocalMongoose);
