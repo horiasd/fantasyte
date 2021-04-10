@@ -5,6 +5,7 @@ const League = require('../models/league');
 const User = require('../models/user');
 const { isLoggedIn, validateLeague } = require('../middleware');
 const catchAsyncErr = require('../utils/catchAsyncError');
+const nba = require('../players.json');
 
 //Renders join league page.
 router.get('/join', isLoggedIn, catchAsyncErr(async (req, res) => {
@@ -137,7 +138,7 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
                 { $set: { roundCount: roundCounter } }
             );
         }
-        res.render('league/draft', { league, user, indexOfUser, draftWindowBeginning, draftWindowEnding });
+        res.render('league/draft', { league, user, nba, indexOfUser, draftWindowBeginning, draftWindowEnding });
     }
     else{
         req.flash('error', 'Someone else is drafting now!');
