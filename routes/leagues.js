@@ -142,7 +142,16 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
                 { $set: { roundCount: roundCounter } }
             );
         }
-        res.render('league/draft', { league, user, nba, indexOfUser, draftWindowBeginning, draftWindowEnding });
+
+        let players = [];
+        for(let i = 0; i < 50; i++ ) {
+            if(!league.draftedPlayers.includes(nba.players[i].name)) {
+                players.push(nba.players[i].name);
+            }
+        }
+
+        //res.render('league/draft', { league, user, nba, indexOfUser, draftWindowBeginning, draftWindowEnding });
+        res.render('league/draft', { league, user, players, indexOfUser, draftWindowBeginning, draftWindowEnding });
     }
     else{
         req.flash('error', 'Someone else is drafting now!');
@@ -156,12 +165,13 @@ router.post('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
     const leagueId = req.params.id;
     const userId = res.locals.loggedInUser._id;
 
-    //const team = Team.findOne({_belongsToUser: userId, _belongsToLeague: leagueId});
-    //team.playerNames.push(playerName);
-    //await team.save();
     await Team.updateOne(
         { _belongsToUser: userId, _belongsToLeague: leagueId}, 
         { $push: { playerNames: playerName } }
+    );
+    await League.updateOne(
+        {_id: leagueId},
+        {$push: { draftedPlayers: playerName }}
     );
     return res.redirect(`/league/${leagueId}`);
 }))

@@ -26,15 +26,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% for(let i=0; i< 50; i++){ %>
-                            <form action="/league/<%=league._id%>/draft" method="POST">
-                                <tr>
-                                    <td><%= nba.players[i].name %></td>
-                                    <input type="hidden" name="playerName" value="<%- nba.players[i].name%> " id="playerName">
-                                    <td><%= nba.players[i].team %></td>
-                                    <td><button class="btn btn-success btn-block">Draft</button></td>
-                                </tr>
-                            </form>
+                        <% for(let player of players){ %>
+                            
+                                <form action="/league/<%=league._id%>/draft" method="POST">
+                                    <tr>
+                                        <td><%= player %></td>
+                                        <input type="hidden" name="playerName" value="<%-player%>" id="playerName">
+                                        <td><button class="btn btn-success btn-block">Draft</button></td>
+                                    </tr>
+                                </form>
                         <% } %>  
                     </tbody>
                 </table>

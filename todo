@@ -6,8 +6,6 @@ AZ EGÉSZ CSAPATÁT LE TUDJA DRAFTOLNI A KÉT PERC ALATT
 -vhogy ellenőrizni kell, hogy a user ne maradhasson örökre a draftolos oldalon, ha a 
 rendszer beengedte vmikor
 -ROUNDOT BELE KELL RAKNI A DRAFT IDŐ SZÁMÍTÁSÁBA
--ha a user csatlakozik egy ligához, akkor hozzá kell adni a teams objecthez a leagueid-t,
-a csapatot meg a draftal feltölti ő
 
 a draft pedig így zajlana:
 |--->Lenne egy "Refresh" gomb, mert újra kell tölteni az oldalt, hogy meg lehessen nézni,

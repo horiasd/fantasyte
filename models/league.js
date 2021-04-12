@@ -35,7 +35,8 @@ const LeagueSchema = new Schema({
     roundCount: {
         type: Number,
         default: 0
-    }
+    },
+    draftedPlayers: [String]
 });
 
 module.exports = mongoose.model('League', LeagueSchema);
