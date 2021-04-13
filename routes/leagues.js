@@ -52,12 +52,16 @@ router.get('/:id', isLoggedIn, catchAsyncErr(async (req, res) => {
         req.flash('error', 'Cant find that league.');
         return res.redirect(`/league`);
     }
+    
     const league = await League.findById(id);
+    const team = await Team.findOne({_belongsToLeague: id, _belongsToUser: userId});
+    
     if (!league) {
         req.flash('error', 'Cant find that league.');
         return res.redirect(`/league`);
     }
-
+    //console.log(league);
+    //console.log(team);
     if(league.draftHappened === false) {
         const indexOfUser = league.users.indexOf(userId);
         const timeFromDB = league.draftTime;
@@ -85,10 +89,10 @@ router.get('/:id', isLoggedIn, catchAsyncErr(async (req, res) => {
                             +draftWindowEnding.getDate()     + '. '
                             +draftWindowEnding.getHours()   + ':'
                             +draftWindowEnding.getMinutes();
-        res.render('league/openedleague', { league, niceDraftTimeFormat, niceFormatB, niceFormatE });
+        res.render('league/openedleague', { league, team, niceDraftTimeFormat, niceFormatB, niceFormatE });
     }
     else{
-        res.render('league/openedleague', { league });
+        res.render('league/openedleague', { league, team });
     }
 }))
 
@@ -104,11 +108,11 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
     
     const league = await League.findById(id);
     const user = await User.findById(userId);
+    const team = await Team.findOne( {_belongsToUser: userId, _belongsToLeague: id});
 
     const indexOfUser = league.users.indexOf(userId);
     let roundCounter = league.roundCount;
-    //TODO: ezt tesztelni itten, asszem az 5 jó itt de ez nem 100% -> így mindenkinek 5 játékosa lesz,
-    //lehet több kéne, játékosok számától függ amit az apiból szedek
+    
     if(roundCounter === 5) {
         await League.updateOne(
             { _id: id }, 
@@ -121,7 +125,11 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
         req.flash('error', 'Cant find that league.');
         return res.redirect(`/league`);
     }
-    
+    if(team.playerNames.length > roundCounter) {
+        req.flash.error('You already drafted this round!');
+        return res.redirect(`/league/${id}`);
+    }
+
     const timeFromDB = league.draftTime;
     const diffToBeginning = indexOfUser * 2;
     const diffToEnding = (indexOfUser * 2) + 2;

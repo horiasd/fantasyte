@@ -1,7 +1,4 @@
 <%- include('../layouts/header') %>
-    <!--GECI RONDA XXXDDDDDDDDDDDDDDDDDDDDDDDD-->
-    <!--IDE KENE A MECCSEK ÁLLÁSA NEMTOM HOGY MEGJELENÍTVE-->
-
     <% if(!league.draftHappened) { %>
         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark text-white">
             <div class="col-md-5 p-lg-5 mx-auto my-5">
@@ -15,66 +12,14 @@
             <div class="product-device box-shadow d-none d-md-block"></div>
             <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
         </div>
-        <% } else { %>
+    <% } else { %>
+       <div class="col-8">
+           <% for(let i = 0; i < 5; i++) { %>
+                <p><%- team.playerNames[i] %></p>
+            <% } %>  
+       </div> 
+            
 
-            <div class="row mt-3">
-                <div class="col-5">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h5 class="card-title ">Team1 vs Team2</h5>
-                            <p class="card-text"><small>(3-0) - (2-1)</small></p>
-                            <!--ITT A PONTOKAT MEG LEHETNE VHOGY SZEBBEN MEGJELENÍTENI-->
-                            <p class="card-text">23 - Points - 19</p>
-                            <p class="card-text">30 - Assists - 21</p>
-                            <p class="card-text">17 - Rebounds - 32</p>
-                            <p class="card-text">2 - Steals - 6</p>
-                            <p class="card-text">11 - Blocks - 2</p>
-                            <p class="card-text">83 - Total - 80</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-4">
-                    <div class="card text-center">
-                        <div class=" card-body">
-                            <h5 class="card-title ">Your team</h5>
-                            <p class="card-text"><small>(3-0)</small></p>
-                            <p class="card-text ">STARTERS</p>
-                            <p class="card-text">Stephen Curry</p>
-                            <p class="card-text">James Harden</p>
-                            <p class="card-text">LeBron James</p>
-                            <p class="card-text">Anthony Davis</p>
-                            <p class="card-text">Joel Embiid</p>
-                            <button class="btn btn-primary btn-block">Change your starters</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-3">
-                    <div class="card text-center">
-                        <div class=" card-body">
-                            <h5 class="card-text">Latest injuryes</h5>
-                            <p class="card-text">Kawhi Leonard - out 1 week</p>
-                            <p class="card-text">Joel Embiid - out 2 months</p>
-                            <p class="card-text">Steph Curry - out 2 weeks</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 mt-3">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h5 class="card-text">Upcoming matches</h5>
-                            <p class="card-text">ASD(you) - Lajos</p>
-                            <p class="card-text">ASD(you) - asdasd</p>
-                            <p class="card-text">ferike - ASD(you)</p>
-                            <p class="card-text">ASD(you) - QhfglkK</p>
-                            <p class="card-text">ASD(you) - MEBEST</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <% } %>
-
-                </main>
-                <%- include('../layouts/footer') %>
+    <% } %>
+    </main>
+<%- include('../layouts/footer') %>

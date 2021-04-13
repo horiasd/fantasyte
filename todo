@@ -1,36 +1,10 @@
 -------------------------------TODO------------------------------
 //TODO
--ELLENŐRIZNI KELL, HOGY AZ ADOTT USER DRAFTOLT E MÁR A KÖRBEN, MERT MOST HA GYORS AKKOR 
-AZ EGÉSZ CSAPATÁT LE TUDJA DRAFTOLNI A KÉT PERC ALATT
--draftHappened érték átállítása, ha vége a draftnak <- elvileg megvan, de tesztelni kéne 
--vhogy ellenőrizni kell, hogy a user ne maradhasson örökre a draftolos oldalon, ha a 
-rendszer beengedte vmikor
--ROUNDOT BELE KELL RAKNI A DRAFT IDŐ SZÁMÍTÁSÁBA
+-ROUNDOT BELE KELL RAKNI A DRAFT IDŐ SZÁMÍTÁSÁBA <- HÉÉÉÉÉÉ
 
-a draft pedig így zajlana:
-|--->Lenne egy "Refresh" gomb, mert újra kell tölteni az oldalt, hogy meg lehessen nézni,
-|--->hogy ki jön(vagy megnézni vmi autorefresh dolgot). Olyankor nem tudom mondjuk mi van,
-|--->ha valaki 2 percig semmittesz és nem választ ki semmmit...
-
-|--->Az az ember férhet mindig hozzá a draftolós oldalhoz, akinek a az adott ligához
-|--->tartozó "yourDraftTime"-ja beleesik egy adott mondjuk 2 perces keretbe. 
-|--->Körökre lesz osztva a draft, mindenki 1 körben 1 játékost választhat. A yourDraftTime, 
 |--->mindig az első körben draftolási időt jelöli. Ehhez minden körben n * (i -1) * 2 -őt
 |--->ahol "n" a ligához csatlakozott játékosok számát "i" pedig azt jelöli, hogy éppen hányadik
-|--->körben járunk. Draft végén mindenkinek egy teljes csapattal kell rendelkezni.
-
-Csapatok tárolása "User" táblában: 
-teams: {
-    leagueId: 1234271323761283662381627
-    team: [
-        LeBron,
-        Giannis,
-        Curry,
-        Embiid,
-        Jokic,
-        stb.....
-    ]
-}
+|--->körben járunk.
 
 EL KELL TÁROLNI A JÁTÉKOSOKAT(mondjuk kb 50-et), nekik "naponta"(amikor megnyomok egy gombot),
 le kell kérni a teljesítményüket. Ez alapján, pedig mehet a pontszámítás. 
