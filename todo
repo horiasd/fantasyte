@@ -1,10 +1,6 @@
 -------------------------------TODO------------------------------
-//TODO
--ROUNDOT BELE KELL RAKNI A DRAFT IDŐ SZÁMÍTÁSÁBA <- HÉÉÉÉÉÉ
-
-|--->mindig az első körben draftolási időt jelöli. Ehhez minden körben n * (i -1) * 2 -őt
-|--->ahol "n" a ligához csatlakozott játékosok számát "i" pedig azt jelöli, hogy éppen hányadik
-|--->körben járunk.
+-openedleague draft utáni rész layout-ja kéne
+-a draft végén ki kéne sorsolni, hogy ki kivel játszik -> ezt db-be belerakni
 
 EL KELL TÁROLNI A JÁTÉKOSOKAT(mondjuk kb 50-et), nekik "naponta"(amikor megnyomok egy gombot),
 le kell kérni a teljesítményüket. Ez alapján, pedig mehet a pontszámítás. 
@@ -17,8 +13,6 @@ gomb, ami lezárja az e heti meccseket, és megnézi ki nyert ilyesmi, és a kö
 meccsek lesznek az aktuálisak. 
 |--> Kéne egy weekCounter a db-be, amit ez a gomb állít nagyobb értékre. Ilyenkor mondjuk a
 matches tömbből már a második matchupot jelenítené meg az első helyett.
-
--a draft végén ki kéne sorsolni, hogy ki kivel játszik -> ezt db-be belerakni
 
 -RAPIDAPI NBA-API TRY IT BICS
 -meccsek tárolásának megoldása(ki kivel játszik, mennyi az eredmény, ki hogy áll)

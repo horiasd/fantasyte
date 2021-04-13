@@ -60,13 +60,13 @@ router.get('/:id', isLoggedIn, catchAsyncErr(async (req, res) => {
         req.flash('error', 'Cant find that league.');
         return res.redirect(`/league`);
     }
-    //console.log(league);
-    //console.log(team);
+
     if(league.draftHappened === false) {
         const indexOfUser = league.users.indexOf(userId);
+        const roundCounter = league.roundCount;
         const timeFromDB = league.draftTime;
-        const diffToBeginning = indexOfUser * 2;
-        const diffToEnding = (indexOfUser * 2) + 2;
+        const diffToBeginning = indexOfUser * 2 + roundCounter * 2;
+        const diffToEnding = diffToBeginning + 2;
         const draftWindowBeginning = new Date(timeFromDB.getTime() + diffToBeginning*60000);
         const draftWindowEnding = new Date(timeFromDB.getTime() + diffToEnding*60000);
         
@@ -131,11 +131,10 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
     }
 
     const timeFromDB = league.draftTime;
-    const diffToBeginning = indexOfUser * 2;
-    const diffToEnding = (indexOfUser * 2) + 2;
+    const diffToBeginning = indexOfUser * 2 + roundCounter * 2;
+    const diffToEnding = diffToBeginning + 2;
     const draftWindowBeginning = new Date(timeFromDB.getTime() + diffToBeginning*60000);
     const draftWindowEnding = new Date(timeFromDB.getTime() + diffToEnding*60000);
-    
     const currentDateTime = new Date();
     
     if(currentDateTime < league.draftTime) {

@@ -13,13 +13,14 @@
             <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
         </div>
     <% } else { %>
-       <div class="col-8">
-           <% for(let i = 0; i < 5; i++) { %>
-                <p><%- team.playerNames[i] %></p>
-            <% } %>  
-       </div> 
-            
-
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-6">
+                    <% for(let player of team.playerNames) { %>
+                        <p><%- player %></p>
+                    <% } %>  
+                </div>
+            </div>
+          </div>  
     <% } %>
-    </main>
 <%- include('../layouts/footer') %>
