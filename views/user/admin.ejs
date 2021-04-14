@@ -1,3 +1,32 @@
 <%- include('../layouts/header') %>
-
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <div class="card shadow">
+                <img src="/pictures/landingpage.jpg" alt="" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="card-title text-center">Admin page</h5>
+                        <div class="mb-3">
+                            To get yesterdays data press this button.
+                            <div class="text-center mt-1">
+                                <button class="btn btn-primary btn-lg">Get data</button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            To close this weeks matchups press this button.
+                            <div class="text-center mt-1">
+                                <button class="btn btn-success btn-lg">End matches</button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            To end the season press this button. 
+                            <div class="text-center mt-1">
+                                <button class="btn btn-danger btn-lg">End season</button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <%- include('../layouts/footer') %>
