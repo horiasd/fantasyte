@@ -70,6 +70,10 @@ router.post('/register', catchAsyncErr(async (req, res) => {
     }
 }))
 
+router.get('/admin', (req, res) => {
+    res.render('user/admin');
+})
+
 //Logs out user.
 router.get('/logout', (req, res) => {
     req.logout();

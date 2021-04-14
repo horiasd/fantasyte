@@ -1,4 +1,12 @@
 -------------------------------TODO------------------------------
+Kell egy admin page, ahol lesz egy gomb ami lehúzza az új adatokat, az apiból, és egy másik
+gomb, ami lezárja az e heti meccseket, és megnézi ki nyert ilyesmi, és a következő heti
+meccsek lesznek az aktuálisak. 
+|--> Kéne egy weekCounter a db-be, amit ez a gomb állít nagyobb értékre. Ilyenkor mondjuk a
+matches tömbből már a második matchupot jelenítené meg az első helyett.
+A user sémában van egy isAdmin mező ezt az adminoknál átállítom -> akinél true az láthatja az
+admin page-t.
+
 -openedleague draft utáni rész layout-ja kéne
 -a draft végén ki kéne sorsolni, hogy ki kivel játszik -> ezt db-be belerakni
 
@@ -8,12 +16,9 @@ le kell kérni a teljesítményüket. Ez alapján, pedig mehet a pontszámítás
 A "User" táblában el kell tárolni, azt is, hogy ki kivel játszik az adott héten, valamint
 azt is, hogy ki hogyan áll. Kell egy WINS és egy LOSSES számláló.
 
-Kell egy admin page, ahol lesz egy gomb ami lehúzza az új adatokat, az apiból, és egy másik
-gomb, ami lezárja az e heti meccseket, és megnézi ki nyert ilyesmi, és a következő heti
-meccsek lesznek az aktuálisak. 
-|--> Kéne egy weekCounter a db-be, amit ez a gomb állít nagyobb értékre. Ilyenkor mondjuk a
-matches tömbből már a második matchupot jelenítené meg az első helyett.
-
+-szebb kinézet(pl.: profil oldal meg ahol táblázatok vannak, azok is lehetnek 
+jobbak/egységesebbek)
 -RAPIDAPI NBA-API TRY IT BICS
 -meccsek tárolásának megoldása(ki kivel játszik, mennyi az eredmény, ki hogy áll)
 -HOW TO PLAY oldal
+-ha sok időm van akkor integrálom a forumot, aki isWriter az tudna cikket írni
