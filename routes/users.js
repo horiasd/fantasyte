@@ -14,9 +14,10 @@ router.get('/login', (req, res) => {
 //Renders profile page.
 router.get('/profile', isLoggedIn, catchAsyncErr(async (req, res) => {
     const user = res.locals.loggedInUser;
-    const leagues = await League.find({ users: user._id, leagueType: 'invite', creator: user._id });
+    const leagues = await League.find({creator: user._id});
+    const yourInviteOnlyLeagues = await League.find({ users: user._id, leagueType: 'invite', creator: user._id });
     const invitedToLeagues = await League.find( { _id: { $in: user.invitedTo}});
-    res.render('user/profile', { user, leagues, invitedToLeagues });
+    res.render('user/profile', { user, leagues, yourInviteOnlyLeagues, invitedToLeagues });
 }))
 
 //Invites player to an invite only league.
@@ -70,8 +71,23 @@ router.post('/register', catchAsyncErr(async (req, res) => {
     }
 }))
 
+//Renders admin page.
 router.get('/admin', (req, res) => {
     res.render('user/admin');
+})
+
+//TODO: it does nothing at the moment
+//gets data from api and saves it to the db
+router.post('/admin', (req, res) => {
+    console.log('the route works!');
+    res.redirect('/admin');
+})
+
+//TODO: it does nothing at the moment
+//closes weekly matchup. Resets the weeklyPoints to zero and adds points to "points".
+router.put('/admin', (req, res) => {
+    console.log('this route also works');
+    res.redirect('/admin');
 })
 
 //Logs out user.
@@ -84,6 +100,14 @@ router.get('/logout', (req, res) => {
 //Renders forgottenpassword.
 router.get('/forgottenpassword', (req, res) => {
     res.render('user/forgottenpassword');
+})
+
+//TODO: it does nothing at the moment
+//Ends season
+router.post('/endseason', (req, res) => {
+    const leagueId  = req.body.leagueid;
+    console.log(`ending league that has an id of ${leagueId}`);
+    res.redirect(`/league/${leagueId}`);
 })
 
 module.exports = router;

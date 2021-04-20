@@ -6,22 +6,22 @@
                 <img src="/pictures/admin.jpg" alt="" class="card-img-top" />
                 <div class="card-body">
                     <h5 class="card-title text-center">Admin page</h5>
+                    <hr>
                         <div class="mb-3">
                             To get yesterdays data press this button.
                             <div class="text-center mt-1">
-                                <button class="btn btn-primary btn-lg">Get data</button>
+                                <form action="/admin" method="POST">
+                                    <button class="btn btn-primary btn-lg">Get data</button>
+                                </form>
                             </div>
                         </div>
+                        <hr>
                         <div class="mb-3">
                             To close this weeks matchups press this button.
                             <div class="text-center mt-1">
-                                <button class="btn btn-success btn-lg">End matches</button>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            To end the season press this button. 
-                            <div class="text-center mt-1">
-                                <button class="btn btn-danger btn-lg">End season</button>
+                                <form action="/admin?_method=PUT" method="POST">
+                                    <button class="btn btn-success btn-lg">End matches</button>
+                                </form>
                             </div>
                         </div>
                 </div>
