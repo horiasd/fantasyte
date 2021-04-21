@@ -97,11 +97,6 @@ router.get('/logout', (req, res) => {
     res.redirect('/start');
 })
 
-//Renders forgottenpassword.
-router.get('/forgottenpassword', (req, res) => {
-    res.render('user/forgottenpassword');
-})
-
 //TODO: it does nothing at the moment
 //Ends season
 router.post('/endseason', (req, res) => {

@@ -1,6 +1,5 @@
 <%- include('../layouts/header') %>
-    <!-- EZT MAJD ÁÁLÍTSD VISSZA -->
-    <% if(league.draftHappened === true) { %>
+    <% if(!league.draftHappened) { %>
         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark text-white">
             <div class="col-md-5 p-lg-5 mx-auto my-5">
                 <h1 class="display-4 font-weight-normal">Draft didnt happen yet</h1>
@@ -13,15 +12,15 @@
             <div class="product-device box-shadow d-none d-md-block"></div>
             <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
         </div>
-    <% } else { %>
+    <% } else if(league.draftHappened && !league.seasonEnded) { %>
         <div class="container mt-5">
             <div class="card-group">
                 <div class="card">
                     <div class="card-body">
                       <h5 class="card-title">Your starters points</h5>
                       <hr>
-                      <p>It's important to change your starts sometimes. They can miss games
-                          due to injuries or dont play for an anoher reason.
+                      <p>It's important to change your starts once in a while. They can miss games
+                          due to injuries or dont play for some other reason.
                       </p>
                       <hr>
                         <p>LeBron - 20</p>
@@ -72,5 +71,55 @@
                 </div>
               </div>
         </div>  
-    <% } %>
+    <% } else{ %>
+      <div class="container mt-5">
+        <div class="card bg-dark text-white">
+          <img src="/pictures/over2.jpg" style="height:40rem;" class="card-img">
+          <div class="card-img-overlay text-center mt-5">
+            <h1 class="card-title">The season is over</h1>
+            <h4>The resuls are:</h4>
+            <div class="col-8 m-auto mt-3">
+              <table class="table text-white table-borderless">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Jani</td>
+                    <td>221</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>panna a királynő</td>
+                    <td>220</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry the Bird</td>
+                    <td>170</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td>hori the bad</td>
+                    <td>123</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">5</th>
+                    <td>i forgot iam in this league</td>
+                    <td>10</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>Click here for your other leagues!</p>
+            <a href="/league" class="btn btn-primary">YOUR LEAGUES</a>
+          </div>
+        </div>
+      </div>
+    <% } %> 
 <%- include('../layouts/footer') %>
