@@ -73,6 +73,13 @@ router.post('/register', catchAsyncErr(async (req, res) => {
 
 //Renders admin page.
 router.get('/admin', (req, res) => {
+    const user = res.locals.loggedInUser;
+    if(user === undefined) {
+        return res.redirect('/start');
+    }
+    if(!user.isAdmin) {
+        return res.redirect('/start');
+    }
     res.render('user/admin');
 })
 
