@@ -36,7 +36,11 @@ const LeagueSchema = new Schema({
         type: Number,
         default: 0
     },
-    draftedPlayers: [String]
+    draftedPlayers: [String],
+    seasonEnded: {
+        type: Boolean,
+        default: false
+    }
 });
 
 module.exports = mongoose.model('League', LeagueSchema);

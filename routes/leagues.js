@@ -61,17 +61,28 @@ router.get('/:id', isLoggedIn, catchAsyncErr(async (req, res) => {
         return res.redirect(`/league`);
     }
 
-    if(league.draftHappened === false) {
+    if(league.seasonEnded === true) {
+        const teamsSO = await Team.find({_belongsToLeague: id});
+        const teamsInOrder = teamsSO.sort(compare2);;
+        
+        let usernameInOrder = [];
+        for(let i = 0; i < teamsInOrder.length; i++) {
+            let user = await User.find({_id: teamsInOrder[i]._belongsToUser});
+            usernameInOrder.push(user[0].username);
+        }
+
+        res.render('league/openedleague', { league, team, teamsInOrder, usernameInOrder });
+
+    }
+    else if(league.draftHappened === false) {
         const indexOfUser = league.users.indexOf(userId);
         const roundCounter = league.roundCount;
         const timeFromDB = league.draftTime;
-        const diffToBeginning = indexOfUser * 2 + roundCounter * 2;
-        const diffToEnding = diffToBeginning + 2;
+        const diffToBeginning = indexOfUser * 0.5 + roundCounter * 0.5 * league.users.length;
+        const diffToEnding = diffToBeginning + 0.5;
         const draftWindowBeginning = new Date(timeFromDB.getTime() + diffToBeginning*60000);
         const draftWindowEnding = new Date(timeFromDB.getTime() + diffToEnding*60000);
         
-
-        //ezt ki kéne szervezni egy függvénybe
         const niceDraftTimeFormat = league.draftTime.getFullYear() + '.' 
                                     +(league.draftTime.getMonth() +1).toString()  + '.' 
                                     +league.draftTime.getDate()     + '. '
@@ -89,13 +100,49 @@ router.get('/:id', isLoggedIn, catchAsyncErr(async (req, res) => {
                             +draftWindowEnding.getDate()     + '. '
                             +draftWindowEnding.getHours()   + ':'
                             +draftWindowEnding.getMinutes();
+                            
         res.render('league/openedleague', { league, team, niceDraftTimeFormat, niceFormatB, niceFormatE });
     }
     else{
-        res.render('league/openedleague', { league, team });
+        const teams = await Team.find({_belongsToLeague: id});
+        const teamsInOrderWeek = teams.sort(compare);
+        
+        let usernameInOrderWeek = [];
+        for(let i = 0; i < teamsInOrderWeek.length; i++) {
+            let user = await User.find({_id: teamsInOrderWeek[i]._belongsToUser});
+            usernameInOrderWeek.push(user[0].username);
+        }
+
+        const teams2 = await Team.find({_belongsToLeague: id});
+        const teamsInOrderSeason = teams2.sort(compare2);
+        
+        let usernameInOrderSeason = [];
+        for(let i = 0; i < teamsInOrderSeason.length; i++) {
+            let user2 = await User.find({_id: teamsInOrderSeason[i]._belongsToUser});
+            usernameInOrderSeason.push(user2[0].username);
+        }
+        res.render('league/openedleague', { league, team, teamsInOrderWeek, teamsInOrderSeason, usernameInOrderWeek, usernameInOrderSeason });
     }
 }))
 
+function compare( a, b ) {
+    if ( a.weeklyPoints > b.weeklyPoints ){
+      return -1;
+    }
+    if ( a.weeklyPoints < b.weeklyPoints ){
+      return 1;
+    }
+    return 0;
+  }
+  function compare2( a, b ) {
+    if ( a.points > b.points ){
+      return -1;
+    }
+    if ( a.points < b.points ){
+      return 1;
+    }
+    return 0;
+  }
 //Renders draft, if its the loggedin users time to draft.
 router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
     const id = req.params.id;
@@ -126,15 +173,17 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
         return res.redirect(`/league`);
     }
     if(team.playerNames.length > roundCounter) {
-        req.flash.error('You already drafted this round!');
+        req.flash('error', 'You already drafted this round!');
         return res.redirect(`/league/${id}`);
     }
 
     const timeFromDB = league.draftTime;
-    const diffToBeginning = indexOfUser * 2 + roundCounter * 2;
-    const diffToEnding = diffToBeginning + 2;
+    const diffToBeginning = indexOfUser * 0.5 + roundCounter * 0.5 * league.users.length;
+    const diffToEnding = diffToBeginning + 0.5;
     const draftWindowBeginning = new Date(timeFromDB.getTime() + diffToBeginning*60000);
     const draftWindowEnding = new Date(timeFromDB.getTime() + diffToEnding*60000);
+    console.log(draftWindowBeginning);
+    console.log(draftWindowEnding);
     const currentDateTime = new Date();
     
     if(currentDateTime < league.draftTime) {
@@ -157,8 +206,7 @@ router.get('/:id/draft', isLoggedIn, catchAsyncErr(async(req, res) => {
             }
         }
 
-        //res.render('league/draft', { league, user, nba, indexOfUser, draftWindowBeginning, draftWindowEnding });
-        res.render('league/draft', { league, user, players, indexOfUser, draftWindowBeginning, draftWindowEnding });
+        res.render('league/draft', { league, user, players, team, indexOfUser, draftWindowBeginning, draftWindowEnding });
     }
     else{
         req.flash('error', 'Someone else is drafting now!');
@@ -205,9 +253,6 @@ router.post('/', isLoggedIn, validateLeague, catchAsyncErr(async (req, res, next
     const id = league._id;
     const team = new Team({_belongsToUser: userId, _belongsToLeague: id});
     await team.save();
-    //FIXME:ez nem kell ide??????????????????????????
-    //user.invitedTo.push(league._id);
-    //await user.save();
     req.flash('success', 'Successfully created a new league!');
     res.redirect(`/league/${league._id}`);
 }))

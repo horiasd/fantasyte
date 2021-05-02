@@ -3,13 +3,10 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-sm-3">
-                <p>Drafted players</p>
-                <p>Pg: </p>
-                <p>Sg: </p>
-                <p>Sf: </p>
-                <p>Pf: </p>
-                <p>C: </p>
-                <p>?:</p>
+                <p>Drafted by you:</p>
+                <% for(let i = 0; i < team.playerNames.length; i++) { %>
+                    <p><%- team.playerNames[i] %></p>    
+                <% } %>  
             </div>
             <div class="col-sm-9">
                 <table class="table">

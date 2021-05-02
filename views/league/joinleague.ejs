@@ -12,7 +12,7 @@
             </thead>
             <tbody>
                 <% for(let league of leagues) { %>
-                    <% if(league.leagueType==="free" && league.users.length < league.maxPlayerCount) { %>
+                    <% if(league.leagueType==="free" && league.users.length < league.maxPlayerCount && !league.draftHappened) { %>
                         <tr>
                             <td>
                                 <%- league.leagueName %>

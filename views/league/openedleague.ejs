@@ -1,77 +1,5 @@
 <%- include('../layouts/header') %>
-    <% if(!league.draftHappened) { %>
-        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark text-white">
-            <div class="col-md-5 p-lg-5 mx-auto my-5">
-                <h1 class="display-4 font-weight-normal">Draft didnt happen yet</h1>
-                <p class="lead font-weight-normal">Draft will take place at <%= niceDraftTimeFormat %>. 
-                    You draft next beetween:
-                    <%= niceFormatB %> and <%= niceFormatE %> 
-                </p>
-                <a class="btn btn-outline-light" href="/league/<%=league._id%>/draft">Draft your team</a>
-            </div>
-            <div class="product-device box-shadow d-none d-md-block"></div>
-            <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
-        </div>
-    <% } else if(league.draftHappened && !league.seasonEnded) { %>
-        <div class="container mt-5">
-            <div class="card-group">
-                <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">Your starters points</h5>
-                      <hr>
-                      <p>It's important to change your starts once in a while. They can miss games
-                          due to injuries or dont play for some other reason.
-                      </p>
-                      <hr>
-                        <p>LeBron - 20</p>
-                        <p>Embiid - 32</p>
-                        <p>Gobert - 11</p>  
-                        <p>Giannis - 48</p>
-                        <p>Lillard - 70</p>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted"><a href="#">Change your starters</a></small>
-                    </div>
-                </div>
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Weekly standing</h5>
-                    <hr>
-                    <p><b>1.</b> Józsi - 1012</p>
-                    <hr>
-                    <p><b>2.</b> p3ti - 321</p>
-                    <hr>
-                    <p><b>3.</b> lajosvagyok - 213</p>  
-                    <hr>
-                    <p><b>4.</b> asdasd - 212</p>
-                    <hr>
-                    <p><b>5.</b> pannaabéna - 123</p>
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-muted">This resets weekly.</small>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Season points</h5>
-                    <hr>
-                    <p><b>1.</b> Józsi - 38</p>
-                    <hr>
-                    <p><b>2.</b> p3ti - 32</p>
-                    <hr>
-                    <p><b>3.</b> lajosvagyok - 21</p>  
-                    <hr>
-                    <p><b>4.</b> asdasd - 20</p>
-                    <hr>
-                    <p><b>5.</b> pannaabéna - 12</p>  
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-muted">This determines who wins the season.</small>
-                  </div>
-                </div>
-              </div>
-        </div>  
-    <% } else{ %>
+    <% if(league.seasonEnded){ %>
       <div class="container mt-5">
         <div class="card bg-dark text-white">
           <img src="/pictures/over2.jpg" style="height:40rem;" class="card-img">
@@ -88,31 +16,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Jani</td>
-                    <td>221</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>panna a királynő</td>
-                    <td>220</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry the Bird</td>
-                    <td>170</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>hori the bad</td>
-                    <td>123</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>i forgot iam in this league</td>
-                    <td>10</td>
-                  </tr>
+                  <% for(let i = 0; i < usernameInOrder.length; i++){ %>
+                    <tr>
+                      <th scope="row"><%- i+1 %></th>
+                      <td><%- usernameInOrder[i] %></td>
+                      <td><%- teamsInOrder[i].points %></td>
+                    </tr>
+                  <% } %>  
                 </tbody>
               </table>
             </div>
@@ -121,5 +31,65 @@
           </div>
         </div>
       </div>
-    <% } %> 
+    <% } else if(!league.draftHappened){  %>
+        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark text-white">
+            <div class="col-md-5 p-lg-5 mx-auto my-5">
+                <h1 class="display-4 font-weight-normal">Draft didnt happen yet</h1>
+                <p class="lead font-weight-normal">Draft will take place at <%= niceDraftTimeFormat %>. 
+                    You draft next beetween:
+                    <%= niceFormatB %> and <%= niceFormatE %> 
+                </p>
+                <a class="btn btn-outline-light" href="/league/<%=league._id%>/draft">Draft your team</a>
+            </div>
+            <div class="product-device box-shadow d-none d-md-block"></div>
+            <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+        </div>
+    <% } else{ %>
+        <div class="container mt-5">
+            <div class="card-group">
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Your players</h5>
+                      <hr>
+                      <p>It's important to change your starts once in a while. They can miss games
+                          due to injuries or dont play for some other reason.
+                      </p>
+                      <hr>
+                        <% for(let i = 0; i < 5; i++){ %>
+                          <p><%- team.playerNames[i] %> </p>  
+                        <% } %>  
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted"><a href="#">Change your starters</a></small>
+                    </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Weekly standing</h5>
+                    <% for(let i = 0; i < teamsInOrderWeek.length; i++){ %>
+                      <hr>
+                      <p><b><%- i+1 %> .</b> <%- usernameInOrderWeek[i] %> - <%- teamsInOrderWeek[i].weeklyPoints %> </p>
+                    <% } %>  
+                    
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">This resets weekly.</small>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Season points</h5>
+                    <% for(let i = 0; i < teamsInOrderSeason.length; i++){ %> 
+                      <hr>
+                      <p><b><%- i+1 %>. </b> <%- usernameInOrderSeason[i] %> - <%- teamsInOrderSeason[i].points %></p>
+                    <% } %>   
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">This determines who wins the season.</small>
+                  </div>
+                </div>
+              </div>
+        </div>  
+    <% } %>
 <%- include('../layouts/footer') %>
+
