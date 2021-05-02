@@ -131,7 +131,7 @@ router.post('/admin', catchAsyncErr(async(req, res) => {
         method: 'GET',
         url: 'https://api-nba-v1.p.rapidapi.com/games/date/' + dateYesterdayFormatted,
         headers: {
-            'x-rapidapi-key': '2096812117msh21ad0492208f14bp14f062jsna4ef43ee69f8',
+            'x-rapidapi-key': 'yourapikey',
             'x-rapidapi-host': 'api-nba-v1.p.rapidapi.com'}
     });
     const games = await result.data.api.games;
@@ -145,7 +145,7 @@ router.post('/admin', catchAsyncErr(async(req, res) => {
             method: 'GET',
             url: `https://api-nba-v1.p.rapidapi.com/statistics/players/gameId/${gameID}`,
             headers: {
-                'x-rapidapi-key': '2096812117msh21ad0492208f14bp14f062jsna4ef43ee69f8',
+                'x-rapidapi-key': 'yourapikey',
                 'x-rapidapi-host': 'api-nba-v1.p.rapidapi.com'
             }
         });
